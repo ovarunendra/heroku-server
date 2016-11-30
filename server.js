@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var fs = require('fs');
+var zip = require('express-zip');
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -25,9 +26,16 @@ app.get('/getfile', function(req, res) {
 })
 
 app.get('/getassets', function(req, res) {
-    var filePath = __dirname + '/blippar_background.png';
+    var filePath = __dirname + '/assets.zip';
     res.sendFile(filePath)
 })
+
+app.get('/getzip', function(req, res){
+    res.zip([
+        { path: 'Floor.jpg', name: 'Floor.jpg' },
+        { path: 'Grip.jpg', name: 'Grip.jpg' }
+      ]);
+});
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
