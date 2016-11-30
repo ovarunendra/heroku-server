@@ -31,10 +31,11 @@ app.get('/getassets', function(req, res) {
 })
 
 app.get('/getzip', function(req, res){
-    res.zip([
-        { path: 'blipp_icon.png', name: 'blipp_icon.png' },
-        { path: 'blippar_background.png', name: 'blippar_background.png' }
-      ]);
+    // res.zip([
+    //     { path: 'blipp_icon.png', name: 'blipp_icon.png' },
+    //     { path: 'blippar_background.png', name: 'blippar_background.png' }
+    //   ]);
+    res.sendFile(__dirname + '/assets.zip');
 });
 
 app.listen(app.get('port'), function() {
