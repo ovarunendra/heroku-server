@@ -24,6 +24,11 @@ app.get('/getfile', function(req, res) {
     });
 })
 
+app.get('/getassets', function(req, res) {
+    var filePath = __dirname + '/blippar_background.png';
+    res.sendFile(filePath)
+})
+
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });

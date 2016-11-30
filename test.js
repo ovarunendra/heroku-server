@@ -1,4 +1,4 @@
-cene.textMsg = scene.addText("Click to open overlayHTML")
+scene.textMsg = scene.addText("Click to open overlayHTML")
       .setTranslation(0, -360, 1)
       .setScale(2)
       .setColor('FF0000')
