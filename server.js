@@ -26,14 +26,14 @@ app.get('/getfile', function(req, res) {
 })
 
 app.get('/getassets', function(req, res) {
-    var filePath = __dirname + '/assets.zip';
+    var filePath = __dirname + '/Floor.md2';
     res.sendFile(filePath)
 })
 
 app.get('/getzip', function(req, res){
     res.zip([
-        { path: 'Floor.jpg', name: 'Floor.jpg' },
-        { path: 'Grip.jpg', name: 'Grip.jpg' }
+        { path: 'blipp_icon.png', name: 'blipp_icon.png' },
+        { path: 'blippar_background.png', name: 'blippar_background.png' }
       ]);
 });
 
