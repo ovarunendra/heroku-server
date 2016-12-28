@@ -1,0 +1,176 @@
+{
+  "marker1": {
+    "category": [
+      {
+        "name": "Skin Health",
+        "id": "SH",
+        "symptoms": [
+          {
+            "name": "Dry",
+            "id": "D",
+            "products": [
+              {
+                "name": "SAVLON",
+                "description": "Antispetic",
+                "imgUrl": ""
+              }
+            ]
+          },
+          {
+            "name": "Dry",
+            "id": "D1"
+          },
+          {
+            "name": "Dry",
+            "id": "D2"
+          },
+          {
+            "name": "Dry",
+            "id": "D3"
+          },
+          {
+            "name": "Dry",
+            "id": "D4"
+          },
+          {
+            "name": "Dry",
+            "id": "D5"
+          },
+          {
+            "name": "Dry",
+            "id": "D6"
+          },
+          {
+            "name": "Dry",
+            "id": "D7"
+          }
+        ]
+      },
+      {
+        "name": "Pain Relief",
+        "id": "PR",
+        "symptoms": [
+          {
+            "name": "Dry",
+            "id": "D"
+          },
+          {
+            "name": "Dry",
+            "id": "D"
+          },
+          {
+            "name": "Dry",
+            "id": "D"
+          },
+          {
+            "name": "Dry",
+            "id": "D"
+          }
+        ]
+      },
+      {
+        "name": "Oral Health",
+        "id": "OH"
+      },
+      {
+        "name": "Cold & Flu",
+        "id": "CF"
+      },
+      {
+        "name": "Digestive Health",
+        "id": "DH"
+      },
+      {
+        "name": "Test",
+        "id": "T"
+      }
+    ]
+  },
+  "marker2": {
+    "category": [
+      {
+        "name": "Skin Health",
+        "id": "SH",
+        "symptoms": [
+          {
+            "name": "Dry",
+            "id": "D",
+            "product": [
+              {
+                "name": "SAVLON",
+                "description": "Antispetic",
+                "imgUrl": ""
+              }
+            ]
+          },
+          {
+            "name": "Dry",
+            "id": "D"
+          },
+          {
+            "name": "Dry",
+            "id": "D"
+          },
+          {
+            "name": "Dry",
+            "id": "D"
+          },
+          {
+            "name": "Dry",
+            "id": "D"
+          },
+          {
+            "name": "Dry",
+            "id": "D"
+          },
+          {
+            "name": "Dry",
+            "id": "D"
+          },
+          {
+            "name": "Dry",
+            "id": "D"
+          }
+        ]
+      },
+      {
+        "name": "Pain Relief",
+        "id": "PR",
+        "symptoms": [
+          {
+            "name": "Dry",
+            "id": "D"
+          },
+          {
+            "name": "Dry",
+            "id": "D"
+          },
+          {
+            "name": "Dry",
+            "id": "D"
+          },
+          {
+            "name": "Dry",
+            "id": "D"
+          }
+        ]
+      },
+      {
+        "name": "Oral Health",
+        "id": "OH"
+      },
+      {
+        "name": "Cold & Flu",
+        "id": "CF"
+      },
+      {
+        "name": "Digestive Health",
+        "id": "DH"
+      },
+      {
+        "name": "Respiratory",
+        "id": "R"
+      }
+    ]
+  }
+}

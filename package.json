@@ -10,9 +10,11 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "cloudinary": "^1.4.6",
     "ejs": "2.4.1",
     "express": "4.13.3",
-    "express-zip": "^2.0.1"
+    "express-zip": "^2.0.1",
+    "morgan": "^1.7.0"
   },
   "repository": {
     "type": "git",

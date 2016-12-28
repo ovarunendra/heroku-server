@@ -1,18 +1,31 @@
 var express = require('express');
 var app = express();
 var fs = require('fs');
+var morgan = require('morgan');
 var zip = require('express-zip');
-
-app.set('port', (process.env.PORT || 5000));
+var cloudinary = require('cloudinary');
+cloudinary.config({
+  cloud_name: 'cloud016',
+  api_key: '489187727225319',
+  api_secret: 'lpKRPtNFaVByYDaD-JWqe4HoRb4'
+});
+cloudinary.uploader.upload(__dirname + '/Blippar_FINAL.mp4', function(result) {
+  // Upload handler
+  console.log('result: ', result);
+}, {
+  public_id: 'Blippar_FINAL',
+  resource_type: 'video'
+});
+app.set('port', (process.env.PORT || 8080));
 
 app.use(express.static(__dirname + '/public'));
-
+app.use(morgan('combined'));
 // views is directory for all template files
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
-  response.send('running');
+  response.send('up and running!');
   response.end();
 });
 
@@ -24,21 +37,90 @@ app.get('/getfile', function(req, res) {
         res.end();
     });
 })
-
-app.get('/getassets', function(req, res) {
-    var filePath = __dirname + '/Floor.md2';
-    res.sendFile(filePath)
+app.get('/getVideo', function(req, res) {
+    //var path = __dirname + '/Blippar_FINAL.mp4';
+    res.send(cloudinary.video('Blippar_FINAL'));
 })
 
-app.get('/getzip', function(req, res){
-    // res.zip([
-    //     { path: 'blipp_icon.png', name: 'blipp_icon.png' },
-    //     { path: 'blippar_background.png', name: 'blippar_background.png' }
-    //   ]);
-    res.sendFile(__dirname + '/assets.zip');
-});
+app.get('/getassets', function(req, res) {
+  console.log('called')
+  res.setHeader('Cache-Control', 'public, max-age=31557600');
+    res.zip([
+    { path: 'fighther_launch.mp3', name: 'fighther_launch.mp3' },
+    { path: 'theme_song.mp3', name: 'theme_song.mp3' },
+    { path: 'tpath_1.md2', name: 'tpath_1.md2' },
+    { path: 'tpath_2.md2', name: 'tpath_2.md2' },
+    { path: 'tpath_3.md2', name: 'tpath_3.md2' },
+    { path: 'blippar_background.png', name: 'blippar_background.png' },
+    { path: 'tpath_0.md2', name: 'tpath_0.md2' },
+    { path: 'fighter_texture_A.jpg', name: 'fighter_texture_A.jpg' },
+    { path: 'fighter.md2', name: 'fighter.md2' },
+    { path: 'fighter_texture.jpg', name: 'fighter_texture.jpg' }
+  ]);
+})
+
+app.get('/getCategory', function (req, res) {
+  var query = req.query;
+  fs.readFile(__dirname + '/data.json', "utf8", function(err, data) {
+      if (err) throw err;
+      var jsonData = JSON.parse(data);
+      var output = [];
+      jsonData[query["markerName"]].category.forEach(function(value, index){
+        output.push({
+          "name": value.name,
+          "id": value.id
+        })
+      })
+      res.jsonp(output);
+      res.end();
+  });
+
+})
+
+app.get('/getSymptoms', function (req, res) {
+  var query = req.query;
+  fs.readFile(__dirname + '/data.json', "utf8", function(err, data) {
+      if (err) throw err;
+      var jsonData = JSON.parse(data);
+      var output = [];
+      jsonData[query["markerName"]].category.forEach(function(value, index){
+        if (value.id == query["id"]) {
+          value.symptoms.forEach(function (v, i) {
+            output.push({
+              "name": v.name,
+              "id": v.id
+            })
+          })
+        }
+      })
+      res.jsonp(output);
+      res.end();
+  });
+
+})
+
+app.get('/getProducts', function (req, res) {
+  var query = req.query;
+  fs.readFile(__dirname + '/data.json', "utf8", function(err, data) {
+      if (err) throw err;
+      var jsonData = JSON.parse(data);
+      var output = [];
+      jsonData[query["markerName"]].category.forEach(function(value, index){
+        if (value.id == query["id"]) {
+          value.symptoms.forEach(function (v, i) {
+            if (v.id == query["sid"]) {
+              output = output.concat(v.products)
+            }
+
+          })
+        }
+      })
+      res.jsonp(output);
+      res.end();
+  });
+
+})
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
-
