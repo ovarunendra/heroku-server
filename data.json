@@ -12,37 +12,9 @@
               {
                 "name": "SAVLON",
                 "description": "Antispetic",
-                "imgUrl": ""
+                "imgUrl": "product.png"
               }
             ]
-          },
-          {
-            "name": "Dry",
-            "id": "D1"
-          },
-          {
-            "name": "Dry",
-            "id": "D2"
-          },
-          {
-            "name": "Dry",
-            "id": "D3"
-          },
-          {
-            "name": "Dry",
-            "id": "D4"
-          },
-          {
-            "name": "Dry",
-            "id": "D5"
-          },
-          {
-            "name": "Dry",
-            "id": "D6"
-          },
-          {
-            "name": "Dry",
-            "id": "D7"
           }
         ]
       },
@@ -52,37 +24,162 @@
         "symptoms": [
           {
             "name": "Dry",
-            "id": "D"
+            "id": "D",
+            "products": [
+              {
+                "name": "SAVLON",
+                "description": "Antispetic",
+                "imgUrl": "product.png"
+              }
+            ]
           },
           {
-            "name": "Dry",
-            "id": "D"
-          },
-          {
-            "name": "Dry",
-            "id": "D"
-          },
-          {
-            "name": "Dry",
-            "id": "D"
+            "name": "Dry one",
+            "id": "D1",
+            "products": [
+              {
+                "name": "SAVLON 1",
+                "description": "Antispetic",
+                "imgUrl": "product.png"
+              }
+            ]
           }
         ]
       },
       {
         "name": "Oral Health",
-        "id": "OH"
+        "id": "OH",
+        "symptoms": [
+          {
+            "name": "Dry",
+            "id": "D",
+            "products": [
+              {
+                "name": "SAVLON",
+                "description": "Antispetic",
+                "imgUrl": "product.png"
+              }
+            ]
+          },
+          {
+            "name": "Dry 22",
+            "id": "D2",
+            "products": [
+              {
+                "name": "SAVLON",
+                "description": "Antispetic",
+                "imgUrl": "product.png"
+              },
+              {
+                "name": "SAVLON",
+                "description": "Antispetic",
+                "imgUrl": "product.png"
+              },
+              {
+                "name": "SAVLON",
+                "description": "Antispetic",
+                "imgUrl": "product.png"
+              },
+              {
+                "name": "SAVLON",
+                "description": "Antispetic",
+                "imgUrl": "product.png"
+              },
+              {
+                "name": "SAVLON",
+                "description": "Antispetic",
+                "imgUrl": "product.png"
+              },
+              {
+                "name": "SAVLON",
+                "description": "Antispetic",
+                "imgUrl": "product.png"
+              }
+            ]
+          },
+          {
+            "name": "Dry 33",
+            "id": "D3",
+            "products": [
+              {
+                "name": "SAVLON",
+                "description": "Antispetic",
+                "imgUrl": "product.png"
+              },
+              {
+                "name": "SAVLON",
+                "description": "Antispetic",
+                "imgUrl": "product.png"
+              },
+              {
+                "name": "SAVLON",
+                "description": "Antispetic",
+                "imgUrl": "product.png"
+              },
+              {
+                "name": "SAVLON",
+                "description": "Antispetic",
+                "imgUrl": "product.png"
+              },
+              {
+                "name": "SAVLON",
+                "description": "Antispetic",
+                "imgUrl": "product.png"
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "Cold & Flu",
-        "id": "CF"
+        "id": "CF",
+        "symptoms": [
+          {
+            "name": "Dry",
+            "id": "D",
+            "products": [
+              {
+                "name": "SAVLON",
+                "description": "Antispetic",
+                "imgUrl": "product.png"
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "Digestive Health",
-        "id": "DH"
+        "id": "DH",
+        "symptoms": [
+          {
+            "name": "Dry",
+            "id": "D",
+            "products": [
+              {
+                "name": "SAVLON",
+                "description": "Antispetic",
+                "imgUrl": "product.png"
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "Test",
-        "id": "T"
+        "id": "T",
+        "symptoms": [
+          {
+            "name": "Dry",
+            "id": "D",
+            "products": [
+              {
+                "name": "SAVLON",
+                "description": "Antispetic",
+                "imgUrl": "product.png"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
