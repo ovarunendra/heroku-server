@@ -120,7 +120,12 @@ app.get('/getProducts', function (req, res) {
   });
 
 })
+app.get('/image', function (req, res) {
+  var query = req.query;
+  var filepath = __dirname + '/' +query.name;
+  res.sendFile(filepath);
 
+})
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
