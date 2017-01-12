@@ -43,20 +43,26 @@ app.get('/getVideo', function(req, res) {
 })
 
 app.get('/getassets', function(req, res) {
-  console.log('called')
-  res.setHeader('Cache-Control', 'public, max-age=31557600');
-    res.zip([
-    { path: 'fighther_launch.mp3', name: 'fighther_launch.mp3' },
-    { path: 'theme_song.mp3', name: 'theme_song.mp3' },
-    { path: 'tpath_1.md2', name: 'tpath_1.md2' },
-    { path: 'tpath_2.md2', name: 'tpath_2.md2' },
-    { path: 'tpath_3.md2', name: 'tpath_3.md2' },
-    { path: 'blippar_background.png', name: 'blippar_background.png' },
-    { path: 'tpath_0.md2', name: 'tpath_0.md2' },
-    { path: 'fighter_texture_A.jpg', name: 'fighter_texture_A.jpg' },
-    { path: 'fighter.md2', name: 'fighter.md2' },
-    { path: 'fighter_texture.jpg', name: 'fighter_texture.jpg' }
-  ]);
+  var query = req.query;
+  var products = query.product;
+  var response = [];
+  products.forEach(function (product) {
+    response.push({path: product, name: product})
+  });
+  res.zip(response);
+  // res.setHeader('Cache-Control', 'public, max-age=31557600');
+  //   res.zip([
+  //   { path: 'fighther_launch.mp3', name: 'fighther_launch.mp3' },
+  //   { path: 'theme_song.mp3', name: 'theme_song.mp3' },
+  //   { path: 'tpath_1.md2', name: 'tpath_1.md2' },
+  //   { path: 'tpath_2.md2', name: 'tpath_2.md2' },
+  //   { path: 'tpath_3.md2', name: 'tpath_3.md2' },
+  //   { path: 'blippar_background.png', name: 'blippar_background.png' },
+  //   { path: 'tpath_0.md2', name: 'tpath_0.md2' },
+  //   { path: 'fighter_texture_A.jpg', name: 'fighter_texture_A.jpg' },
+  //   { path: 'fighter.md2', name: 'fighter.md2' },
+  //   { path: 'fighter_texture.jpg', name: 'fighter_texture.jpg' }
+  // ]);
 })
 
 app.get('/getCategory', function (req, res) {
