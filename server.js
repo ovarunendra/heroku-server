@@ -38,8 +38,9 @@ app.get('/getfile', function(req, res) {
     });
 })
 app.get('/getVideo', function(req, res) {
-    //var path = __dirname + '/Blippar_FINAL.mp4';
-    res.send(cloudinary.video('Blippar_FINAL'));
+    var path = __dirname + '/Blippar_FINAL.mp4';
+    //res.send(cloudinary.video('Blippar_FINAL'));
+    res.sendFile(path);
 })
 
 app.get('/getassets', function(req, res) {
