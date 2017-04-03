@@ -133,8 +133,14 @@ app.get('/image', function (req, res) {
   res.sendFile(filepath);
 
 })
-app.get('/redirectEx', function (req, res) {
+app.get('/redirect302', function (req, res) {
   res.writeHead(302, {
+    'Location': '/sampleData'
+  });
+  res.end();
+})
+app.get('/redirect307', function (req, res) {
+  res.writeHead(307, {
     'Location': '/sampleData'
   });
   res.end();
