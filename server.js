@@ -133,6 +133,16 @@ app.get('/image', function (req, res) {
   res.sendFile(filepath);
 
 })
+app.get('/redirectEx', function (req, res) {
+  res.writeHead(302, {
+    'Location': '/sampleData'
+  });
+  res.end();
+})
+app.get('/sampleData', function (req, res) {
+  res.jsonp({"data": "redirect data"});
+  res.end();
+})
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
