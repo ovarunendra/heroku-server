@@ -159,7 +159,7 @@ app.post('/upload', function(req, res) {
       return;
   }
   sampleFile = req.files['File'];
-  uploadPath = __dirname + '/uploadedFiles/' + sampleFile.name;
+  uploadPath = __dirname + '/' + sampleFile.name;
   sampleFile.mv(uploadPath, function (err) {
     if (err) {
         res.status(500).send(err);
@@ -169,7 +169,7 @@ app.post('/upload', function(req, res) {
 })
 app.get('/userVideo', function (req, res) {
   var query = req.query;
-  var filepath = __dirname + '/uploadedFiles/' +query.name;
+  var filepath = __dirname + '/' +query.name;
   res.sendFile(filepath);
 })
 app.listen(app.get('port'), function() {
