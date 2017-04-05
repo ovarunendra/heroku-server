@@ -4,6 +4,7 @@ var fs = require('fs');
 var morgan = require('morgan');
 var zip = require('express-zip');
 var cloudinary = require('cloudinary');
+var fileUpload = require('express-fileupload');
 cloudinary.config({
   cloud_name: 'cloud016',
   api_key: '489187727225319',
@@ -20,6 +21,7 @@ app.set('port', (process.env.PORT || 8080));
 
 app.use(express.static(__dirname + '/public'));
 app.use(morgan('combined'));
+app.use(fileUpload());
 // views is directory for all template files
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
@@ -148,6 +150,27 @@ app.get('/redirect307', function (req, res) {
 app.get('/sampleData', function (req, res) {
   res.jsonp({"data": "redirect data"});
   res.end();
+})
+app.post('/upload', function(req, res) {
+  var sampleFile, uploadPath;
+  if (!req.files) {
+      console.log('No files were uploaded.');
+      res.send('No files were uploaded.');
+      return;
+  }
+  sampleFile = req.files['File'];
+  uploadPath = __dirname + '/uploadedFiles/' + sampleFile.name;
+  sampleFile.mv(uploadPath, function (err) {
+    if (err) {
+        res.status(500).send(err);
+    }
+    res.end();
+  })
+})
+app.get('/userVideo', function (req, res) {
+  var query = req.query;
+  var filepath = __dirname + '/uploadedFiles/' +query.name;
+  res.sendFile(filepath);
 })
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
