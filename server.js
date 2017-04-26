@@ -163,7 +163,10 @@ app.post('/upload', function(req, res) {
   sampleFile.mv(uploadPath, function (err) {
     if (err) {
         res.status(500).send(err);
+    } else {
+      res.writeHead(200, {});
     }
+    res.jsonp({ msg: "file uplaoded" });
     res.end();
   })
 })
