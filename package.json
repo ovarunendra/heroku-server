@@ -10,12 +10,15 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "aws-sdk": "^2.94.0",
+    "body-parser": "^1.18.2",
     "cloudinary": "^1.4.6",
     "ejs": "2.4.1",
     "express": "4.13.3",
     "express-fileupload": "^0.1.2",
     "express-zip": "^2.0.1",
-    "morgan": "^1.7.0"
+    "morgan": "^1.7.0",
+    "s3fs": "^2.5.0"
   },
   "repository": {
     "type": "git",

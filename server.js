@@ -5,6 +5,61 @@ var morgan = require('morgan');
 var zip = require('express-zip');
 var cloudinary = require('cloudinary');
 var fileUpload = require('express-fileupload');
+var aws = require('aws-sdk');
+aws.config.loadFromPath('./AwsConfig.json');
+
+var bodyParser = require('body-parser');
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+
+var s3 = new aws.S3();
+
+// var s3fsImpl = new s3fs('outfit-image-upload-dev', {
+//     accessKeyId: 'AKIAIRT2VF6KTAXZLL5A',
+//     secretAccessKey: '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'
+// });
+
+var BUCKET_NAME = 'ovarunendra-dev-testing-bucket';
+var REGION = 'us-east-2';
+
+function createBucket(bucketName) {
+  s3.createBucket({Bucket: bucketName}, function() {
+    console.log('created the bucket[' + bucketName + ']');
+    console.log(arguments);
+  });
+} 
+
+function uploadFile(remoteFilename, fileName) {
+  var fileBuffer = fs.readFileSync(fileName);
+  var metaData = getContentTypeByFile(fileName);
+  
+  s3.putObject({
+    ACL: 'public-read',
+    Bucket: BUCKET_NAME,
+    Key: remoteFilename,
+    Body: fileBuffer,
+    ContentType: metaData
+  }, function(error, response) {
+    console.log('uploaded file[' + fileName + '] to [' + remoteFilename + '] as [' + metaData + ']');
+    console.log(arguments);
+    console.log("https://s3."+REGION+".amazonaws.com/"+BUCKET_NAME+"/"+remoteFilename)
+  });
+}
+
+function getContentTypeByFile(fileName) {
+  var rc = 'application/octet-stream';
+  var fileNameLowerCase = fileName.toLowerCase();
+
+  if (fileNameLowerCase.indexOf('.html') >= 0) rc = 'text/html';
+  else if (fileNameLowerCase.indexOf('.css') >= 0) rc = 'text/css';
+  else if (fileNameLowerCase.indexOf('.json') >= 0) rc = 'application/json';
+  else if (fileNameLowerCase.indexOf('.js') >= 0) rc = 'application/x-javascript';
+  else if (fileNameLowerCase.indexOf('.png') >= 0) rc = 'image/png';
+  else if (fileNameLowerCase.indexOf('.jpg') >= 0) rc = 'image/jpg';
+
+  return rc;
+}
+
 cloudinary.config({
   cloud_name: 'cloud016',
   api_key: '489187727225319',
@@ -151,6 +206,10 @@ app.get('/sampleData', function (req, res) {
   res.jsonp({"data": "redirect data"});
   res.end();
 })
+app.post('/postData', function (req, res) {
+  res.jsonp(req.body);
+  res.end();
+})
 app.post('/upload', function(req, res) {
   var sampleFile, uploadPath;
   if (!req.files) {
@@ -159,7 +218,8 @@ app.post('/upload', function(req, res) {
       return;
   }
   sampleFile = req.files['File'];
-  uploadPath = __dirname + '/' + sampleFile.name;
+  console.log(req.body)
+  uploadPath = __dirname + '/uploadedFiles/' + sampleFile.name;
   sampleFile.mv(uploadPath, function (err) {
     if (err) {
         res.status(500).send(err);
@@ -169,6 +229,30 @@ app.post('/upload', function(req, res) {
     res.end();
   })
 })
+
+app.post('/s3Upload', function(req, res){
+  var sampleFile;
+  if (!req.files) {
+      console.log('No files were uploaded.');
+      res.send('No files were uploaded.');
+      return;
+  }
+  sampleFile = req.files['File'];
+  // var stream = fs.createReadStream(sampleFile);
+  console.log(req.body, req.files);
+  // s3fsImpl.writeFile(_file_name, stream).then(function () {
+  //     console.log('uploaded ' + sampleFile + ' --> ' + _file_name);
+  //     files.splice(0, 1);
+  //     saveFile(files, ++index);
+  // }, function (reason) {
+  //     console.error('unable to upload ' + file);
+  //     throw reason;
+  // });
+  //createBucket('outfit-image-upload-dev')
+  uploadFile('dummy.jpg', 'save_screen.jpg');
+  res.end();
+})
+
 app.get('/userVideo', function (req, res) {
   var query = req.query;
   var filepath = __dirname + '/' +query.name;
