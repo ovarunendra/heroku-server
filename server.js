@@ -6,13 +6,13 @@ var zip = require('express-zip');
 var cloudinary = require('cloudinary');
 var fileUpload = require('express-fileupload');
 var aws = require('aws-sdk');
-aws.config.loadFromPath('./AwsConfig.json');
+// aws.config.loadFromPath('./AwsConfig.json');
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
-var s3 = new aws.S3();
+// var s3 = new aws.S3();
 
 // var s3fsImpl = new s3fs('outfit-image-upload-dev', {
 //     accessKeyId: 'AKIAIRT2VF6KTAXZLL5A',
@@ -60,18 +60,18 @@ function getContentTypeByFile(fileName) {
   return rc;
 }
 
-cloudinary.config({
-  cloud_name: 'cloud016',
-  api_key: '489187727225319',
-  api_secret: 'lpKRPtNFaVByYDaD-JWqe4HoRb4'
-});
-cloudinary.uploader.upload(__dirname + '/Blippar_FINAL.mp4', function(result) {
-  // Upload handler
-  console.log('result: ', result);
-}, {
-  public_id: 'Blippar_FINAL',
-  resource_type: 'video'
-});
+// cloudinary.config({
+//   cloud_name: 'cloud016',
+//   api_key: '489187727225319',
+//   api_secret: 'lpKRPtNFaVByYDaD-JWqe4HoRb4'
+// });
+// cloudinary.uploader.upload(__dirname + '/Blippar_FINAL.mp4', function(result) {
+//   // Upload handler
+//   console.log('result: ', result);
+// }, {
+//   public_id: 'Blippar_FINAL',
+//   resource_type: 'video'
+// });
 app.set('port', (process.env.PORT || 8080));
 
 app.use(express.static(__dirname + '/public'));
